@@ -4,6 +4,9 @@ import numpy as np
 x_list = []
 y_list = []
 matrix = []
+
+#------------------------------------------------------------------------------EDIT PARAMETERS HERE------------------------------------------------------------------------------
+
 objp = [0.60, 0, 0, 0.60, 0.60, 0, 0.60, 1.20, 0, 0.60, 1.80, 0, 0.60, 2.40, 0, 1.20, 0,
         0, 1.20, 0.60, 0, 1.20, 1.20, 0, 1.20, 1.80, 0, 1.20, 2.40, 0, 1.80, 0, 0, 1.80, 0.60, 0, 1.80, 1.20, 0, 1.80, 1.80, 0, 1.80, 2.40, 0, 2.40, 0, 0, 2.40, 0.60, 0, 2.40, 1.20, 0, 2.40, 1.80, 0, 2.40, 2.40, 0, 3.0, 0, 0, 3.0, 0.60, 0, 3.0, 1.20, 0, 3.0, 1.80, 0, 3.0, 2.40, 0]
 
@@ -11,13 +14,14 @@ dist_list = [0.0, 0.0, 0.0, 0.0, 0.0]
 mtx_list = [919.033203125, 0.0, 651.2035522460938,
             0.0, 919.698486328125, 357.77734375, 0.0, 0.0, 1.0]
 
+#-----------------------------------------------------------------------------------STOP HERE-----------------------------------------------------------------------------------
 
 def click_event(event, x, y, flags, params):
     if event == cv2.EVENT_LBUTTONDOWN:
         cv2.circle(img, (x, y), 3, (0, 0, 255), -1)
         cv2.imshow('image', img)
-        x_list.append(y)
-        y_list.append(x)
+        x_list.append(y)    # it is swapped here. Change maybe needed
+        y_list.append(x)    # it is swapped here. Change maybe needed
 
     if event == cv2.EVENT_RBUTTONDOWN or len(x_list) == 25:
         matrix = points_to_matrix(x_list, y_list)
@@ -54,7 +58,7 @@ def calibration(imgp, objp, dist_list, mtx_list):
 if __name__ == "__main__":
 
     img = cv2.imread(
-        '/home/jacob/Documents/Accio/GlobalTruth/frame0000.jpg', 1)
+        '/home/jacob/Documents/Accio/GlobalTruth/frame0000.jpg', 1) # change this to the path of the image
     cv2.imshow('image', img)
     cv2.setMouseCallback('image', click_event)
     cv2.waitKey(0)
